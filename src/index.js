@@ -3,9 +3,12 @@ const express = require('express');
 
 const teste = express();
 
+teste.use(express.json());
+
 teste.get('/projects', (request, response) => {
-    const query = request.query;
-    console.log(query);
+    const { title, owner } = request.query;
+    console.log(owner);
+    console.log(title);
     return response.json([
         'projeto 1',
         'projeto 2',
@@ -13,6 +16,8 @@ teste.get('/projects', (request, response) => {
 });
 
 teste.post('/projects',(request, response) => {
+    const {title, owner} = request.body;
+    console.log(title)
     return response.json([
         'projeto 1',
         'projeto 2',
@@ -20,6 +25,8 @@ teste.post('/projects',(request, response) => {
     ]);
 });
 teste.put('/projects/:id',(request, response) => {
+    const {id} = request.params
+    console.log(id);
     return response.json([
         'projeto 4',
         'projeto 2',
