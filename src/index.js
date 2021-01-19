@@ -4,9 +4,11 @@ const express = require('express');
 const teste = express();
 
 teste.get('/projects', (request, response) => {
+    const query = request.query;
+    console.log(query);
     return response.json([
         'projeto 1',
-        'projeto 2'
+        'projeto 2',
     ]);
 });
 
@@ -14,14 +16,20 @@ teste.post('/projects',(request, response) => {
     return response.json([
         'projeto 1',
         'projeto 2',
-        'projeto 3'
+        'projeto 3',
     ]);
 });
-teste.put('/projects:id',(request, response) => {
+teste.put('/projects/:id',(request, response) => {
     return response.json([
         'projeto 4',
         'projeto 2',
-        'projeto 3'
+        'projeto 3',
+    ]);
+});
+teste.delete('/projects/:id',(request, response) => {
+    return response.json([
+        'projeto 2',
+        'projeto 3',
     ]);
 });
 teste.listen(3333,() => {
