@@ -7,6 +7,14 @@ const teste = express();
 teste.use(express.json());
 
 
+
+
+
+function logRequests(request, response, next){
+    const{ method, url} = request;
+    const logLabel = `[${toUpperCase()}] ${url}`;
+}
+
 const projects = [];
 
 
