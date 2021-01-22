@@ -7,16 +7,19 @@ const teste = express();
 teste.use(express.json());
 
 
-
-
+const projects = [];
 
 function logRequests(request, response, next){
     const{ method, url} = request;
-    const logLabel = `[${toUpperCase()}] ${url}`;
+    const logLabel = `[${method.toUpperCase()}] ${url}`;
+
+    console.log(logLabel);
+    
+
+    next();
+    console.timeEnd(logLabel);
 }
-
-const projects = [];
-
+teste.use(logRequests);
 
 teste.get('/projects', (request, response) => {
     const { title} = request.query;
@@ -37,7 +40,6 @@ teste.post('/projects',(request, response) => {
     console.log(project);
     return response.json(project);
 });
-
 
 teste.put('/projects/:id',(request, response) => {
     const {id} = request.params
@@ -61,6 +63,7 @@ teste.put('/projects/:id',(request, response) => {
 
 
 });
+
 teste.delete('/projects/:id',(request, response) => {
     const { id } = request.params;
 
